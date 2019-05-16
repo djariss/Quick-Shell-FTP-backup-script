@@ -1,4 +1,4 @@
-<h1>Quick-Shell-backup-script</h1>
+<h1>Quick Shell FTP backup script</h1>
 
 Small shell script for providing FTP backup solution for your websites and databases with support for incremential backups. Please note that this shell script is intended to be used for remote FTP storage of your backups.
 
