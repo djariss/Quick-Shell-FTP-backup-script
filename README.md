@@ -1,6 +1,6 @@
 <h1>Quick-Shell-backup-script</h1>
 
-Small shell script for providing backup solution for your website and databases with support for incremential backups and FTP backup.
+Small shell script for providing FTP backup solution for your websites and databases with support for incremential backups. Please note that this shell script is intended to be used for remote FTP storage of your backups.
 
 <h3>INSTALATION</h3>
 
