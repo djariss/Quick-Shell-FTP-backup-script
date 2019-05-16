@@ -15,21 +15,21 @@ FULLBACKUP="Mon"
 
 ### MySQL Setup ###
 MUSER="root"
-MPASS="Rm6pq455"
+MPASS="your_mysql_root_password"
 MHOST="localhost"
 MYSQL="$(which mysql)"
 MYSQLDUMP="$(which mysqldump)"
 GZIP="$(which gzip)"
 
 ### FTP server Setup ###
-FTPD="//incremental"
-FTPU="u161177"
-FTPP="wE9BMLIrhdW9GJFB"
-FTPS="u161177.your-storagebox.de"
+FTPD="FTP_directory"
+FTPU="FTP_username"
+FTPP="your_FTP_password"
+FTPS="FTP_address_or_host"
 NCFTP="$(which ncftpput)"
 
 ### Other stuff ###
-EMAILID="djariss@gmail.com"
+EMAILID="enter_email_for_notifications"
 
 ### Start Backup for file system ###
 [ ! -d $BACKUP ] && mkdir -p $BACKUP || :
