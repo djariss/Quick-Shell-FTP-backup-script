@@ -18,4 +18,6 @@ If you don't have any control panel for your webserver, you can enter the cron j
 
 You can also specify some other time per your own needs, the example from above will execure the backup on 3h in the morning. 
 
-If you need any assistance or support on this one, please get in touch with me at djariss@gmail.com
+<h3>SUPPORT AND FEEDBACK</h3>
+
+If you need any feedback or you need support in setting it up, please get in touch with me at djariss@gmail.com
