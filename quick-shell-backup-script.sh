@@ -5,7 +5,7 @@
 # Created by Davor Veselinovic in 2012
 # ---------------------------------------------------------------------
 
-### System Setup ###
+# System Setup #
 DIRS="/var/www"
 BACKUP=/tmp/backup.$$
 NOW=$(date +"%d-%m-%Y")
@@ -13,7 +13,7 @@ INCFILE="/root/tar-inc-backup.dat"
 DAY=$(date +"%a")
 FULLBACKUP="Mon"
 
-### MySQL Setup ###
+# MySQL Settings #
 MUSER="root"
 MPASS="your_mysql_root_password"
 MHOST="localhost"
@@ -21,20 +21,20 @@ MYSQL="$(which mysql)"
 MYSQLDUMP="$(which mysqldump)"
 GZIP="$(which gzip)"
 
-### FTP server Setup ###
+# FTP server credentials #
 FTPD="FTP_directory"
 FTPU="FTP_username"
 FTPP="your_FTP_password"
 FTPS="FTP_address_or_host"
 NCFTP="$(which ncftpput)"
 
-### Other stuff ###
+# Email notification #
 EMAILID="enter_email_for_notifications"
 
-### Start Backup for file system ###
+# Backup the file system #
 [ ! -d $BACKUP ] && mkdir -p $BACKUP || :
 
-### See if we want to make a full backup ###
+# Check if we need to make Full backup #
 if [ "$DAY" == "$FULLBACKUP" ]; then
   FTPD="//full"
   FILE="fs-full-$NOW.tar.gz"
@@ -45,8 +45,8 @@ else
   tar -g $INCFILE -zcvf $BACKUP/$FILE $DIRS
 fi
 
-### Start MySQL Backup ###
-# Get all databases name
+# Creating MySQL Backup #
+# Get all databases names
 DBS="$($MYSQL -u $MUSER -h $MHOST -p$MPASS -Bse 'show databases')"
 for db in $DBS
 do
@@ -54,8 +54,8 @@ do
  $MYSQLDUMP -u $MUSER -h $MHOST -p$MPASS $db | $GZIP -9 > $FILE
 done
 
-### Dump backup using FTP ###
-#Start FTP backup using ncftp
+# Transfer backup using FTP #
+# Initiate FTP backup via ncftp
 ncftp -u"$FTPU" -p"$FTPP" $FTPS<<EOF
 mkdir $FTPD
 mkdir $FTPD/$NOW
@@ -65,7 +65,7 @@ mput *
 quit
 EOF
 
-### Find out if ftp backup failed or not ###
+# Check if the FTP backup was successful #
 if [ "$?" == "0" ]; then
  rm -f $BACKUP/*
 else
@@ -73,7 +73,8 @@ else
  echo "Date: $(date)">$T
  echo "Hostname: $(hostname)" >>$T
  echo "Backup failed" >>$T
+ # Send notification email if backup fails #
  mail  -s "BACKUP FAILED" "$EMAILID" <$T
  rm -f $T
 fi
-
+# All done, have fun :) #
