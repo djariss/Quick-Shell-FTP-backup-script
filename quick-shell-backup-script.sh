@@ -1,6 +1,6 @@
 #!/bin/sh
 # Backup script that copies /var/www content and all MySQL bases
-# then the content is uploaded onto FTP stogare.
+# then the content is uploaded onto FTP storage.
 # Just change the credentials in the FTP server Setup part of script and you are good to g. :)
 # Created by Davor Veselinovic in 2012
 # ---------------------------------------------------------------------
